@@ -8,8 +8,8 @@ app.config['DEBUG'] = True
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
 
-DEFAULT_STUDENT_NAME = 'TKP Student'
-DEFAULT_CLASSROOM_NAME = 'TKP World'
+DEFAULT_STUDENT_NAME = 'TKP Student '
+DEFAULT_CLASSROOM_NAME = 'TKP World '
 
 @app.route('/')
 def hello():
