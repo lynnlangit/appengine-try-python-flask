@@ -1,0 +1,24 @@
+application: tkp-virtualproctor
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /assets
+  static_dir: assets
+
+- url: /js
+  static_dir: js
+
+- url: /upload
+  script: photos.app
+
+- url: /photo
+  script: photos.app
+
+- url: /.*
+  script: main.app
