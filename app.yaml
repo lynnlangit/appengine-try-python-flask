@@ -8,17 +8,23 @@ handlers:
 - url: /css
   static_dir: css
 
-- url: /assets
-  static_dir: assets
-
 - url: /js
   static_dir: js
+
+- url: /assets
+  static_dir: assets
 
 - url: /upload
   script: photos.app
 
 - url: /photo
   script: photos.app
+
+- url: /screenshots
+  script: screenshots.app
+
+- url: /screenshots/.*
+  script: screenshots.app
 
 - url: /.*
   script: main.app
