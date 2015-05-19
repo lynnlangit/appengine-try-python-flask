@@ -35,9 +35,11 @@ class Screenshots(webapp2.RequestHandler):
 
         try:
             stats = gcs.listbucket(bucket, max_keys=10)
-            names = [x.filename.replace('/virtualproctor/','') for x in stats]
-            result = {'names': names}
-            self.response.write(json.dumps(result))
+            names = [x.filename.replace('/virtualproctor/','').split('.') for x in stats]
+            meta = []
+            for name in names:
+                meta.append({'classroom':name[0],'student':name[1]})
+            self.response.write(json.dumps(meta))
 
         except Exception as e:
             logging.exception(e)

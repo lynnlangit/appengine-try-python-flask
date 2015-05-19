@@ -52,9 +52,9 @@
     </style>
 </head>
 
-<body>
+<body ng-app="VirtualProctor">
 
-<div class="site-wrapper">
+<div class="site-wrapper" ng-controller="Screenshots">
 
     <div class="site-wrapper-inner">
 
@@ -78,10 +78,10 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Irvine,CA</a>
                                         </li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another
-                                            action</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Austin,TX
+                                            </a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else
                                             here</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated
@@ -95,34 +95,17 @@
                 </div>
             </div>
 
-            <div class="inner cover">
-                <br><br><br>
-                <div class="row">
-                    <div class="col-sm-4">Classroom A</div>
-                    <div class="col-sm-4">Classroom B</div>
-                    <div class="col-sm-4">Classroom C</div>
-                </div>
-                <br>
-            <div>
-                <table data-toggle="table" data-url="data.json">
-                    <thead>Table Header</thead><br>
-                        <tbody>Table Body</tbody>
 
-                </table>
-            </div>
-
-                <ul style="list-style-type:none">{% for name in names %}
-
-                    <li>
+                <ul style="list-style-type:none">
+                    <li ng-repeat="image in screenshots">
                         <div>
-                            <img src="screenshots/{{name}}" class="screenshot">
+                            <img ng-src="screenshots/{{image.classroom}}.{{image.student}}" class="screenshot">
                             <br>
-                            {{name}}
+                            {{image.student}}
 
                         </div>
-
                     </li>
-                    {% endfor %}
+
                 </ul>
             </div>
         </div>
@@ -135,5 +118,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-table.js"></script>
 <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="js/VirtualProctor.js"></script>
 </body>
 </html>
