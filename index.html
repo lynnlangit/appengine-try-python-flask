@@ -15,9 +15,7 @@
     <link href="css/cover.css" rel="stylesheet">
 
     <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
-    <![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
@@ -55,11 +53,8 @@
 <body ng-app="VirtualProctor">
 
 <div class="site-wrapper" ng-controller="Screenshots">
-
     <div class="site-wrapper-inner">
-
         <div class="cover-container">
-
             <div class="masthead clearfix">
                 <div class="inner">
                     <h3 class="masthead-brand">
@@ -67,52 +62,44 @@
                             <img src="assets/TKP_Logo_Final_reversed_out.png" class="logo">
                         </a>
                     </h3>
+
                     <nav>
                         <ul class="nav masthead-nav">
-
                             <li>
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
-                                            data-toggle="dropdown" aria-expanded="true">
-                                        Classroom
-                                        <span class="caret"></span>
+                                            data-toggle="dropdown" aria-expanded="true">Classroom<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Irvine,CA</a>
-                                        </li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Austin,TX
-                                            </a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else
-                                            here</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated
-                                            link</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Irvine,CA</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Austin,TX</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Seattle, WA</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">San Diego, CA</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{image.classroom}}</a></li>
                                     </ul>
                                 </div>
-
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
-
-
                 <ul style="list-style-type:none">
-                    <li ng-repeat="image in screenshots">
+                    <li></li><br>
+                    <li><label>Kid are coding now in </label><br></li>
+                    <li><label>Irvine, CA; Seattle, WA; Austin, TX</label><br><br></li>
+                    <li ng-repeat="image in screenshots" draggable="true">
                         <div>
                             <img ng-src="screenshots/{{image.classroom}}.{{image.student}}" class="screenshot">
                             <br>
-                            {{image.student}}
-
+                            Student is {{image.student}}
+                            <br>
+                            Classroom is {{image.classroom}}
                         </div>
                     </li>
-
                 </ul>
             </div>
         </div>
-
     </div>
-
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
