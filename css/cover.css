@@ -18,7 +18,35 @@ a:hover {
   background-color: #fff;
   border: 1px solid #fff;
 }
+/*added section for grid layout -- to line 49*/
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
+.wrapper {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 95%;
+  background-color: #fff;
+}
+/* grid */
+.row {
+  margin: 0 -10px;
+  margin-bottom: 20px;
+}
+
+[class*="col-"] {
+  padding: 10px;
+}
+
+@media all and ( min-width: 600px ) {
+  .col-1-4 {
+    float: left;
+    width: 25%;
+  }
+}
 
 /*
  * Base structure
