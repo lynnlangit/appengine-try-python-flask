@@ -29,7 +29,7 @@
         }
 
         .screenshot {
-            max-height: 150px;
+            max-height: 250px;
             max-width: 250px;
             padding: 10px;
 
@@ -71,11 +71,11 @@
                                             data-toggle="dropdown" aria-expanded="true">Classroom<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Irvine,CA</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Austin,TX</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Seattle, WA</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">San Diego, CA</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{image.classroom}}</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="selectClass('All Classes')">All Classrooms</a></li>
+                                        <li role="presentation" ng-repeat="image in screenshots | unique:'classroom' | orderBy:'classroom'">
+                                            <a role="menuitem" tabindex="-1" href="#" ng-click="selectClass(image.classroom)">
+                                            {{image.classroom}}
+                                        </a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -83,27 +83,14 @@
                     </nav>
                 </div>
             </div>
-                <ul style="list-style-type:none">
-                    <li></li><br>
-                    <li><label>Kid are coding now in </label><br></li>
-                    <li><label>Irvine, CA; Seattle, WA; Austin, TX</label><br><br></li>
-                    <li ng-repeat="image in screenshots" draggable="true">
-                        <div>
-                            <img ng-src="screenshots/{{image.classroom}}.{{image.student}}" class="screenshot">
-                            <br>
-                            Student is {{image.student}}
-                            <br>
-                            Classroom is {{image.classroom}}
-                        </div>
-                    </li>
-                </ul>
-              <div class="wrapper">
+
+              <div>
 
                 <div class="row clearfix">
-                      <div class="col-1-4"><h2>a</h2>Image 1</div>
-                      <div class="col-1-4"><h2>b</h2>Image 2</div>
-                      <div class="col-1-4"><h2>c</h2>Image 3</div>
-                      <div class="col-1-4"><h2>d</h2>Image 4</div>
+                    <h1>{{className}}</h1>
+                      <div class="col-1-3" ng-repeat="image in screenshots | byClass:className">
+                          <div><img ng-src="screenshots/{{image.classroom}}.{{image.student}}" class="screenshot"></div>
+                          {{image.classroom}}/{{image.student}}</div>
                 </div>
                </div>
             </div>
