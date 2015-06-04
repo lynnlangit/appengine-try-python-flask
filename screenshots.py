@@ -56,7 +56,7 @@ class Screenshot(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
 
-    (r'/screenshots/([\w\.\-]+)', Screenshot),
+    (r'/screenshots/(.+)', Screenshot),
     (r'/screenshots', Screenshots)
 ],
                               debug=True)
