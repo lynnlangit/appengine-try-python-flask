@@ -3,7 +3,8 @@ import os
 import cloudstorage as gcs
 import webapp2
 import json
-
+import datetime
+import time
 
 my_default_retry_params = gcs.RetryParams(initial_delay=0.2,
                                           max_delay=5.0,
@@ -34,19 +35,24 @@ class Screenshots(webapp2.RequestHandler):
         bucket = '/' + bucket_name
 
         try:
-            stats = gcs.listbucket(bucket, max_keys=10)
-            names = [x.filename.replace('/virtualproctor/','').split('.') for x in stats]
-            meta = []
-            for name in names:
-                meta.append({'classroom':name[0],'student':name[1]})
-            self.response.write(json.dumps(meta))
+            stats = gcs.listbucket(bucket)
+            ten_minutes = datetime.timedelta(minutes = 10)
+            ten_minutes_ago = datetime.datetime.now()-ten_minutes
+            names = []
+            for x in stats:
+                create_time = datetime.datetime.fromtimestamp(x.st_ctime)
+                if ten_minutes_ago < create_time:
+                    name = x.filename.replace('/virtualproctor/', '').split('.')
+                    image = {'classroom':name[0],'student':name[1],'created':x.st_ctime}
+                    names.append(image)
+            self.response.write(json.dumps(names))
 
         except Exception as e:
             logging.exception(e)
             self.response.write('{"error": "oops"}')
 
 class Screenshot(webapp2.RequestHandler):
-    def get(self,filename):
+    def get(self,created,filename):
         self.response.content_type = 'image/png'
         gcs_file = gcs.open('/virtualproctor/' + filename)
 
@@ -56,7 +62,7 @@ class Screenshot(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
 
-    (r'/screenshots/(.+)', Screenshot),
+    (r'/screenshots/(\d+.?\d*)/(.+)', Screenshot),
     (r'/screenshots', Screenshots)
 ],
                               debug=True)

@@ -1,14 +1,19 @@
 angular.module('VirtualProctor',[]);
-angular.module('VirtualProctor').controller('Screenshots',function($scope,$http){
-     $http.get('/screenshots').success(function(data){
-         $scope.screenshots = data;
-         console.log(JSON.stringify($scope.screenshots));
-     });
+angular.module('VirtualProctor').controller('Screenshots',function($scope,$http,$interval){
+
     $scope.className = "All Classes";
     $scope.selectClass = function(classname){
         $scope.className = classname;
     }
+    function loadData(){
+        $http.get('/screenshots').success(function(data){
+         $scope.screenshots = data;
+     });
+    }
+    loadData();
+    $interval(loadData,10000);
 });
+
 
 //filter from https://github.com/angular-ui/angular-ui-OLDREPO/blob/master/modules/filters/unique/unique.js
 angular.module('VirtualProctor').filter('unique',function(){
@@ -57,4 +62,7 @@ angular.module('VirtualProctor').filter('byClass',function(){
             return value.classroom === className;
         })
     }
+});
+angular.module('VirtualProctor').filter('escape', function() {
+  return window.encodeURIComponent;
 });
