@@ -1,5 +1,4 @@
-application: tkp-virtualproctor
-version: 1
+application: steady-fin-94022
 runtime: python27
 api_version: 1
 threadsafe: true
